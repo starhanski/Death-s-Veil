@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b8bc6ee28e9d8428bada96fda67f6c, type: 3}
+  m_Name: playerData
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  currentHealth: 10
+  experience: 0
+  level: 1
+  moveVelocity: 12.3
+  jumpVelocity: 25
+  amountOfJumps: 1
+  coyoteTime: 0.1
+  jumpHeight: 0.4
+  wallSlideVelocity: 2
+  wallClimbVelocity: 3
+  wallJumpVelocity: 25
+  wallJumpTime: 0.3
+  wallJumpAngle: {x: 1, y: 2}
+  startOffset: {x: 0.6, y: 0.85}
+  stopOffset: {x: 0.2, y: 0.85}
+  isCanDash: 0
+  dashCooldown: 1
+  maxHoldTime: 0.5
+  holdTimeScale: 0.25
+  dashTime: 0.2
+  dashVelocity: 35
+  drag: 7.5
+  dashEndYMultiplier: 0.2
+  distanceBetweenAfterImages: 0.1
+  isCanRoll: 0
+  rollVelocity: 10
+  rollColldown: 0.2
+  primaryAttackDamage: 5
+  secondaryAttackDamage: 10
+  primaryAttackRadius: 1.16
+  secondaryAttackRadius: 1.54
+  primaryAttackCooldown: 0.4
+  secondaryAttackCooldown: 0.8
+  attackVelocity: 10
+  attackVelocityAddingTime: 0.1
+  secondaryAttackStunDamage: 1
+  primaryAttackStunDamage: 0
+  omnivamp: 0
+  whatIsDamageable:
+    serializedVersion: 2
+    m_Bits: 128
+  direction: -1
+  knockback: 0
+  knockbackVelocity: 20
+  knockbackStartTime: 53.853714
+  knockbackDuration: 0.1
+  knockbackAngle: {x: 10, y: 5}
+  deathChunkParticle: {fileID: 5028053763810681507, guid: 203c2da96688dd045a0c5269025c91f8, type: 3}
+  deathBloodParticle: {fileID: 1075864004316583484, guid: 482c8ce598979834f91aeea46cd1e8b3, type: 3}
+  wallCheckDistance: 0.8
+  groundCheckRadius: 0.41
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  slopeCheckDistance: 1.2
+  slopeDownAngle: 0
+  slopeDownAngleOld: 0
+  slopeSideAngle: 0
+  maxSlopeAngle: 45
+  slopeNormalPerpendicular: {x: -1, y: -0.000001543447}
+  isOnSlope: 0
+  noFriction: {fileID: 6200000, guid: 6cc30ed470596234e8c59e842229d2f4, type: 2}
+  fullFriction: {fileID: 6200000, guid: daf3bf97c90441b4780fcfbbc75f6bd0, type: 2}
