@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_DeadState : DeadState
+public class E1_SpawnState : SpawnState
 {
-    Enemy1 enemy;
-    public E1_DeadState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_DeadState stateData, Enemy1 enemy) : base(entity, stateMachine, animBoolName, stateData)
+    private Enemy1 enemy;
+    public E1_SpawnState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_SpawnState stateData, Enemy1 enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -16,7 +16,6 @@ public class E1_DeadState : DeadState
     public override void Enter()
     {
         base.Enter();
-
     }
     public override void Exit()
     {
@@ -25,13 +24,17 @@ public class E1_DeadState : DeadState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (enemy.isActiveAndEnabled)
+        if (isAnimationFinished)
         {
-            stateMachine.ChangeState(enemy.moveState);
+            enemy.stateMachine.ChangeState(enemy.moveState);
         }
     }
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+    public override void AnimationTrigger()
+    {
+        base.AnimationTrigger();
     }
 }

@@ -21,6 +21,7 @@ public class DeadState : State
         GameObject.Instantiate(stateData.deathBloodParticle,entity.aliveGo.transform.position,stateData.deathBloodParticle.transform.rotation);
         GameObject.Instantiate(stateData.deathChunkParticle,entity.aliveGo.transform.position,stateData.deathChunkParticle.transform.rotation);
         entity.gameObject.SetActive(false);
+       
         player.SendMessage("GetExperiencePoints",entity.entityData.experienceAmount);
     }
     public override void Exit()
@@ -30,6 +31,7 @@ public class DeadState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+       
     }
     public override void PhysicsUpdate()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAbilityManager : MonoBehaviour
 {
+
     [SerializeField] private PlayerData playerData;
     [SerializeField] private PlayerAbilityStats playerAbilityStats;
 
@@ -12,8 +13,11 @@ public class PlayerAbilityManager : MonoBehaviour
     [SerializeField] private Skills dashSlowTime;
 
     private Dictionary<string, System.Action> skillEffects;
+
+    private Player player;
     private void Start()
     {
+        player = GetComponent<Player>();
         skillEffects = new Dictionary<string, System.Action>()
         {
             { "Double Jump", ApplyDoubleJump },
@@ -100,6 +104,7 @@ public class PlayerAbilityManager : MonoBehaviour
     {
         playerData.maxHealth *= (100f + 5f) / 100f;
         playerData.currentHealth = playerData.maxHealth;
+        player.SetHealthBar();
     }
     #endregion
 }

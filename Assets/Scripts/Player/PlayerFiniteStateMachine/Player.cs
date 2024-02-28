@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
 
     #region Other Variables
 
+
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
 
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
 
     public GameManager GM;
     private ExperienceBar experienceBar;
+    private HealthBar healthBar;
 
     [SerializeField]
     private SkillWindowHandler skillWindowHandler;
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         experienceBar = GameObject.Find("UI_ExperienceBar").GetComponent<ExperienceBar>();
+        healthBar = GameObject.Find("UI_HealthBar").GetComponent<HealthBar>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
 
         playerColliderSize = playerBoxCollider.size;
@@ -107,6 +110,8 @@ public class Player : MonoBehaviour
         skillWindowHandler.SetLevelSystem(levelSystem);
 
         StateMachine.Initialize(IdleState);
+
+        SetHealthBar();
     }
 
     private void Update()
@@ -272,6 +277,10 @@ public class Player : MonoBehaviour
         DamageState.Damage(attackDetails);
     }
     public void SetMaxHealth() => playerData.currentHealth = playerData.maxHealth;
+    public void SetHealthBar()
+    {
+        healthBar.SetHealthBar(playerData.currentHealth, playerData.maxHealth);
+    }
     public void SetDefaultData()
     {
         playerData.isCanDash = false;

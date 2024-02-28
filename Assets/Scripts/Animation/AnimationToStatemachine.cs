@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationToStatemachine : MonoBehaviour
 {
     public AttackState attackState;
-
+    public SpawnState spawnState;
     
     private void TriggerAttack()
     {
@@ -14,5 +14,10 @@ public class AnimationToStatemachine : MonoBehaviour
     private void FinishAttack()
     {
         attackState.FinishAttack();
+    }
+
+    private void AnimationTrigger()
+    {
+        spawnState.AnimationTrigger();
     }
 }
