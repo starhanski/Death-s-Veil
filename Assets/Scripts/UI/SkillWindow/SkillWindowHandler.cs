@@ -11,8 +11,6 @@ public class SkillWindowHandler : MonoBehaviour
 
     [SerializeField]
     private PlayerAbilityStats playerAbilityStats;
-    [SerializeField]
-    private PlayerAbilityStats startedPlayerAbilityStats;
 
     [SerializeField]
     private List<SkillSection> skillSections = new List<SkillSection>();
@@ -20,7 +18,7 @@ public class SkillWindowHandler : MonoBehaviour
     private void Awake()
     {
         animationController = GetComponent<Animator>();
-        playerAbilityStats.playerSkills = startedPlayerAbilityStats.playerSkills;
+        playerAbilityStats.playerSkills = new List<Skills>(playerAbilityStats.startedPlayerSkills);
     }
 
     public void SetSkillWindow()
@@ -33,6 +31,7 @@ public class SkillWindowHandler : MonoBehaviour
             animationController.SetBool("show", true);
 
         }
+        
     }
 
     public void SetLevelSystem(LevelSystem levelSystem)
@@ -43,8 +42,9 @@ public class SkillWindowHandler : MonoBehaviour
 
     private void LevelSystem_OnLevelChanged(object sender, EventArgs e)
     {
-        FillSkillWindowWithAbilities();
         SetSkillWindow();
+        FillSkillWindowWithAbilities();
+
     }
 
     private void FillSkillWindowWithAbilities()
