@@ -82,7 +82,7 @@ public class PlayerDamageState : PlayerState
     public void DecreaseHealth(float amount)
     {
         playerData.currentHealth -= amount;
-
+        player.SetHealthBar();
         if (playerData.currentHealth <= 0.0f)
         {
             Die();

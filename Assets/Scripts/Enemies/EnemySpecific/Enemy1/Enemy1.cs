@@ -12,6 +12,8 @@ public class Enemy1 : Entity
     public E1_MeleeAttackState meleeAttackState { get; private set; }
     public E1_StunState stunState { get; private set; }
     public E1_DeadState deadState { get; private set; }
+    public E1_SpawnState spawnState { get; private set; }
+
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -29,6 +31,8 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_DeadState deadStateData;
     [SerializeField]
+    private D_SpawnState spawnStateData;
+    [SerializeField]
     private Transform meleeAttackPosition;
 
 
@@ -45,8 +49,9 @@ public class Enemy1 : Entity
         meleeAttackState = new E1_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         stunState = new E1_StunState(this, stateMachine, "stun", stunStateData, this);
         deadState = new E1_DeadState(this, stateMachine, "dead", deadStateData, this);
+        spawnState = new E1_SpawnState(this, stateMachine, "spawn", spawnStateData, this);
 
-        stateMachine.Initialize(moveState);
+        stateMachine.Initialize(spawnState);
     }
     public override void Damage(AttackDetails attackDetalis)
     {
@@ -66,4 +71,6 @@ public class Enemy1 : Entity
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
+
+    
 }
