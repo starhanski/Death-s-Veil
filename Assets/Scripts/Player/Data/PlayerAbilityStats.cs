@@ -8,8 +8,10 @@ public class PlayerAbilityStats : ScriptableObject
 
    
 
-    [Header("All Player Skills")]
-    public List<Skills> playerSkills = new List<Skills>();
+    [Header(" Player Skills")]
+    public List<Skills> playerSkills;
 
+ [Header(" Started Player Skills")]
+    public List<Skills> startedPlayerSkills = new List<Skills>();
 
 }

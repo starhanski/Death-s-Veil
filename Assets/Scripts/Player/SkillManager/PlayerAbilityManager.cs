@@ -6,8 +6,7 @@ public class PlayerAbilityManager : MonoBehaviour
 {
 
     [SerializeField] private PlayerData playerData;
-    [SerializeField] private PlayerAbilityStats playerAbilityStats;
-
+    [SerializeField] private PlayerAbilityStats playerAbilities;
 
 
     [SerializeField] private Skills dashSlowTime;
@@ -46,7 +45,7 @@ public class PlayerAbilityManager : MonoBehaviour
             skillEffects[currentSkill.title].Invoke();
             if (CantSelectSkillMultipleTimes(currentSkill))
             {
-                playerAbilityStats.playerSkills.Remove(currentSkill);
+                playerAbilities.playerSkills.Remove(currentSkill);
             }
         }
     }
@@ -64,8 +63,8 @@ public class PlayerAbilityManager : MonoBehaviour
     private void ApplyDash()
     {
         playerData.isCanDash = true;
-        playerAbilityStats.playerSkills.Add(dashSlowTime);
-    }
+        playerAbilities.playerSkills.Add(dashSlowTime);
+     }
 
     private void ApplyDashSlowTime()
     {

@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: playerAbilities
   m_EditorClassIdentifier: 
   playerSkills:
+  - {fileID: 11400000, guid: 8d56003bcb5dad44b85ea613e50296e5, type: 2}
+  - {fileID: 11400000, guid: 305ba35ec5ff8684ab036bc68ba53c87, type: 2}
   - {fileID: 11400000, guid: d5a5e33d02446e048b187218ee77dcf2, type: 2}
   - {fileID: 11400000, guid: f8ff3238f6a0d134dbe8ee71bd6fe372, type: 2}
   - {fileID: 11400000, guid: 8a14cffdf877a5c4ab2289a88d1419bd, type: 2}
+  - {fileID: 11400000, guid: 3d059677cfeded448b98004644c7b0fe, type: 2}
   - {fileID: 11400000, guid: ae29f33e3628cb2428f6969fcd9702fe, type: 2}
   - {fileID: 11400000, guid: c13c802e33a055c4885e7cf99772632a, type: 2}
   - {fileID: 11400000, guid: 8ae96878ddf6ad6418fd8df25372321c, type: 2}
-  - {fileID: 11400000, guid: 6e7e02fc707b7724bb7642db64b24cad, type: 2}
+  startedPlayerSkills:
+  - {fileID: 11400000, guid: 8d56003bcb5dad44b85ea613e50296e5, type: 2}
+  - {fileID: 11400000, guid: 305ba35ec5ff8684ab036bc68ba53c87, type: 2}
+  - {fileID: 11400000, guid: d5a5e33d02446e048b187218ee77dcf2, type: 2}
+  - {fileID: 11400000, guid: f8ff3238f6a0d134dbe8ee71bd6fe372, type: 2}
+  - {fileID: 11400000, guid: 8a14cffdf877a5c4ab2289a88d1419bd, type: 2}
+  - {fileID: 11400000, guid: 3d059677cfeded448b98004644c7b0fe, type: 2}
+  - {fileID: 11400000, guid: ae29f33e3628cb2428f6969fcd9702fe, type: 2}
+  - {fileID: 11400000, guid: c13c802e33a055c4885e7cf99772632a, type: 2}
+  - {fileID: 11400000, guid: 8ae96878ddf6ad6418fd8df25372321c, type: 2}

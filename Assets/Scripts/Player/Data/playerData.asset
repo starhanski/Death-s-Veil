@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   maxHealth: 50
-  currentHealth: 10
+  currentHealth: 40
   experience: 0
   level: 1
-  moveVelocity: 12.3
+  moveVelocity: 10
   jumpVelocity: 25
   amountOfJumps: 1
   coyoteTime: 0.1
-  jumpHeight: 0.4
+  jumpHeight: 0.5
   wallSlideVelocity: 2
   wallClimbVelocity: 3
   wallJumpVelocity: 25
@@ -57,9 +57,9 @@ MonoBehaviour:
   direction: -1
   knockback: 0
   knockbackVelocity: 20
-  knockbackStartTime: 53.853714
-  knockbackDuration: 0.1
-  knockbackAngle: {x: 10, y: 5}
+  knockbackStartTime: 2.6621864
+  knockbackDuration: 0.15
+  knockbackAngle: {x: 5, y: 10}
   deathChunkParticle: {fileID: 5028053763810681507, guid: 203c2da96688dd045a0c5269025c91f8, type: 3}
   deathBloodParticle: {fileID: 1075864004316583484, guid: 482c8ce598979834f91aeea46cd1e8b3, type: 3}
   wallCheckDistance: 0.8
@@ -72,7 +72,7 @@ MonoBehaviour:
   slopeDownAngleOld: 0
   slopeSideAngle: 0
   maxSlopeAngle: 45
-  slopeNormalPerpendicular: {x: -1, y: -0.000001543447}
+  slopeNormalPerpendicular: {x: -1, y: 0.0000018328464}
   isOnSlope: 0
   noFriction: {fileID: 6200000, guid: 6cc30ed470596234e8c59e842229d2f4, type: 2}
   fullFriction: {fileID: 6200000, guid: daf3bf97c90441b4780fcfbbc75f6bd0, type: 2}
