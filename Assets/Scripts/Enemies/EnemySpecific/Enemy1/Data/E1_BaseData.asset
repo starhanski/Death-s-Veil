@@ -21,7 +21,7 @@ MonoBehaviour:
   groundCheckRadius: 0.3
   stunResistance: 3
   stunRecoveryTime: 2
-  maxHealth: 10
+  maxHealth: 20
   damageHopSpeed: 10
   touchDamageWidth: 0.92
   touchDamageHeight: 2.43

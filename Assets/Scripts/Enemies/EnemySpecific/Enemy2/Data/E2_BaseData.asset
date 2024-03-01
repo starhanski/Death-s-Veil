@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c9924243d38b246b6cb45310e75e1c, type: 3}
+  m_Name: E2_BaseData
+  m_EditorClassIdentifier: 
+  experienceAmount: 20
+  wallCheckDistance: 0.1
+  ledgeCheckDistance: 0.4
+  minAgroDistance: 17
+  maxAgroDistance: 18
+  closeRangeActionDistance: 3.09
+  groundCheckRadius: 0.3
+  stunResistance: 1
+  stunRecoveryTime: 1
+  maxHealth: 10
+  damageHopSpeed: 3
+  touchDamageWidth: 2.18
+  touchDamageHeight: 1.04
+  touchDamageCooldown: 1.5
+  touchDamage: 10
+  hitParticle: {fileID: 2436412567298257134, guid: 3b8ef8fc121adfd478cf1609b1f4b8fd, type: 3}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64

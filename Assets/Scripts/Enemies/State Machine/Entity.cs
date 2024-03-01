@@ -13,7 +13,9 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public GameObject aliveGo { get; private set; }
     public AnimationToStatemachine atsm { get; private set; }
-    public AttackDetails attackDetails;
+    public AttackDetails enemyAttackDetails;
+    public Player player { get; private set; }
+
 
     [SerializeField]
     private Transform wallCheck;
@@ -36,6 +38,7 @@ public class Entity : MonoBehaviour
 
 
 
+
     protected bool isStunned;
     protected bool isDead;
     public virtual void Start()
@@ -48,6 +51,7 @@ public class Entity : MonoBehaviour
         anim = aliveGo.GetComponent<Animator>();
         stateMachine = new FiniteStateMachine();
         atsm = aliveGo.GetComponent<AnimationToStatemachine>();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public virtual void Update()
@@ -68,6 +72,7 @@ public class Entity : MonoBehaviour
     {
         velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);
         rb.velocity = velocityWorkspace;
+
     }
     public virtual void SetVelocity(float velocity, Vector2 angle, int direction)
     {
@@ -85,9 +90,9 @@ public class Entity : MonoBehaviour
             if (hit != null)
             {
                 lastTouchDamageTime = Time.time;
-                attackDetails.damageAmount = entityData.touchDamage;
-                attackDetails.position = aliveGo.transform.position;
-                hit.SendMessage("Damage", attackDetails);
+                enemyAttackDetails.damageAmount = entityData.touchDamage;
+                enemyAttackDetails.position = aliveGo.transform.position;
+                hit.SendMessage("Damage", enemyAttackDetails);
             }
         }
     }
@@ -132,6 +137,11 @@ public class Entity : MonoBehaviour
     }
     public virtual void Damage(AttackDetails attackDetalis)
     {
+        if (attackDetalis.lifeStelPercentage > 0f)
+        {
+            float lifeStealAmount = attackDetalis.damageAmount * (attackDetalis.lifeStelPercentage / 100f);
+            player.RestoreHealth(lifeStealAmount);
+        }
         lastDamageTime = Time.time;
         currentHealth -= attackDetalis.damageAmount;
         currentStunResistance -= attackDetalis.stunDamageAmount;
@@ -181,5 +191,5 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(topLeft, bottomLeft);
 
     }
-   
+
 }

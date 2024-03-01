@@ -193,7 +193,6 @@ public class Player : MonoBehaviour
         Vector2 checkPos = transform.position - new Vector3(0.0f, playerColliderSize.y / 2);
         SlopeCheckHorizontal(checkPos);
         SlopeCheckVeritical(checkPos);
-        Debug.Log("on slope " + playerData.isOnSlope);
     }
 
     private void SlopeCheckHorizontal(Vector2 checkPos)
@@ -266,6 +265,12 @@ public class Player : MonoBehaviour
 
     private void CheckPrimaryHitBox() => StateMachine.CurrentState.CheckPrimaryHitBox();
     private void CheckSecondaryHitBox() => StateMachine.CurrentState.CheckSecondaryHitBox();
+
+    public void RestoreHealth(float amount)
+    {
+        playerData.currentHealth += amount;
+        SetHealthBar();
+    }
     private void Flip()
     {
         FacingDirection *= -1;

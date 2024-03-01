@@ -5,23 +5,19 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    private int numberOfSpawns = 4;
     [SerializeField]
-    private Transform respawnPoint;
+    private Transform spawnPoint;
+
+    public GameObject gato;
 
     [SerializeField]
-    private GameObject player;
+    private float spawnTime = 10f;
+    private float lastSpawnTime = float.NegativeInfinity;
 
-    [SerializeField]
-    private float respawnTime;
-
-    private float respawnStartTime;
-
-    private bool respawn;
-
-    private CinemachineVirtualCamera CVC;
     private void Start()
     {
-        CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
+
     }
     private void Update()
     {
@@ -29,16 +25,19 @@ public class GameManager : MonoBehaviour
     }
     private void CheckRespawn()
     {
-        if (Time.time >= respawnStartTime + respawnTime && respawn)
+        if (numberOfSpawns > 0)
         {
-            var playerTemp = Instantiate(player, respawnPoint);
-            CVC.m_Follow = playerTemp.transform;
-            respawn = false;
+            if (Time.time >= lastSpawnTime + spawnTime)
+            {
+                SpawnEnemy();
+                lastSpawnTime = Time.time;
+                numberOfSpawns--;
+            }
         }
+
     }
-    public void Respawn()
+    public void SpawnEnemy()
     {
-        respawnStartTime = Time.time;
-        respawn = true;
+        Instantiate(gato, spawnPoint);
     }
 }

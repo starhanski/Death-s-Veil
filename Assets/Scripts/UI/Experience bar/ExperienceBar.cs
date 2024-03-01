@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,8 @@ public class ExperienceBar : MonoBehaviour
     private void Awake()
     {
         barImage = transform.Find("expBar").GetComponent<Image>();
-        
-    }
 
+    }
     private void SetExperienceBarSize(float experienceNormalized)
     {
         barImage.fillAmount = experienceNormalized;
@@ -28,4 +28,5 @@ public class ExperienceBar : MonoBehaviour
     {
         SetExperienceBarSize(levelSystem.GetExperienceNormalized());
     }
+
 }

@@ -79,7 +79,7 @@ public class PlayerAbilityManager : MonoBehaviour
 
     private void ApplyOmnivamp()
     {
-        // TODO: add omnivamp mechanic
+       playerData.omnivamp += 10f;
     }
 
     private void ApplyPower()
