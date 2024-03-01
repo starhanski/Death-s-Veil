@@ -92,7 +92,6 @@ public class PlayerDamageState : PlayerState
     {
         MonoBehaviour.Instantiate(playerData.deathChunkParticle, player.transform.position, playerData.deathChunkParticle.transform.rotation);
         MonoBehaviour.Instantiate(playerData.deathBloodParticle, player.transform.position, playerData.deathBloodParticle.transform.rotation);
-        player.GM.Respawn();
         MonoBehaviour.Destroy(player.gameObject);
     }
 

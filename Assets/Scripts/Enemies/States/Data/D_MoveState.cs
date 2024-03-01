@@ -6,5 +6,5 @@ using UnityEngine;
 
 public class D_MoveState : ScriptableObject
 {
-    public float movementSpeed = 3;
+    public float movementSpeed = 3f;
 }

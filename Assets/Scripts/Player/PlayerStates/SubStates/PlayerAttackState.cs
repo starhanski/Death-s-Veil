@@ -85,6 +85,8 @@ public class PlayerAttackState : PlayerAbilityState
         attackDetails.damageAmount = playerData.primaryAttackDamage;
         attackDetails.position = player.primaryAttackHitBox.position;
         attackDetails.stunDamageAmount = playerData.primaryAttackStunDamage;
+        attackDetails.lifeStelPercentage = playerData.omnivamp;
+
         foreach (Collider2D collider in detectedObjects)
         {
             collider.transform.parent.SendMessage("Damage", attackDetails);
@@ -96,6 +98,8 @@ public class PlayerAttackState : PlayerAbilityState
         attackDetails.damageAmount = playerData.secondaryAttackDamage;
         attackDetails.position = player.secondaryAttackHitBox.position;
         attackDetails.stunDamageAmount = playerData.secondaryAttackStunDamage;
+        attackDetails.lifeStelPercentage = playerData.omnivamp;
+
         foreach (Collider2D collider in detectedObjects)
         {
             collider.transform.parent.SendMessage("Damage", attackDetails);
