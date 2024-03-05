@@ -21,7 +21,11 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (performCloseRangeAction)
+        if (enemy.isTakeDamage)
+        {
+            stateMachine.ChangeState(enemy.damageState);
+        }
+        else if (performCloseRangeAction)
         {
             stateMachine.ChangeState(enemy.meleeAttackState);
         }
@@ -38,6 +42,7 @@ public class E1_PlayerDetectedState : PlayerDetectedState
             entity.Flip();
             stateMachine.ChangeState(enemy.moveState);
         }
+
     }
     public override void PhysicsUpdate()
     {

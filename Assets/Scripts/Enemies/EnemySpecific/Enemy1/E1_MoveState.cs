@@ -23,8 +23,11 @@ public class E1_MoveState : MoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
-        if (isPlayerIsMinAgroRange)
+        if (enemy.isTakeDamage)
+        {
+            stateMachine.ChangeState(enemy.damageState);
+        }
+        else if (isPlayerIsMinAgroRange)
         {
             stateMachine.ChangeState(enemy.playerDetectedState);
         }
@@ -34,6 +37,7 @@ public class E1_MoveState : MoveState
             stateMachine.ChangeState(enemy.idleState);
 
         }
+
     }
     public override void PhysicsUpdate()
     {

@@ -7,22 +7,31 @@ public class D_Entity : ScriptableObject
 {
     public int experienceAmount;
 
+    [Header("Checks")]
     public float wallCheckDistance = 0.1f, ledgeCheckDistance = 0.4f;
     public float minAgroDistance = 3f;
     public float maxAgroDistance = 4f;
     public float closeRangeActionDistance = 2f;
     public float groundCheckRadius = 0.3f;
+
+    [Header("Main Stats")]
+    public float maxHealth = 30f;
+
+    public float currentHealth;
+
     public float stunResistance = 3f;
     public float stunRecoveryTime = 2f;
-    public float maxHealth = 30f;
-    public float damageHopSpeed = 3f;
 
+    public float currentStunResistance;
 
+    [Header("Touch damage")]
     public float touchDamageWidth, touchDamageHeight;
     public float touchDamageCooldown = 1f;
     public float touchDamage = 10f;
-    public GameObject hitParticle;
 
+    [Header("Other")]
+
+    public GameObject hitParticle;
     public LayerMask whatIsPlayer;
     public LayerMask whatIsGround;
 }

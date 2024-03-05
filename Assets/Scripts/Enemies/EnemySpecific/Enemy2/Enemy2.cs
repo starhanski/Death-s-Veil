@@ -12,6 +12,7 @@ public class Enemy2 : Entity
     public E2_PlayerDetectedState playerDetectedState { get; private set; }
     public E2_StunState stunState { get; private set; }
     public E2_ChargeState chargeState { get; private set; }
+    public E2_DamageState damageState { get; private set; }
 
     #endregion
 
@@ -27,9 +28,10 @@ public class Enemy2 : Entity
     [SerializeField]
     private D_PlayerDetectedState playerDetectedStateData;
     [SerializeField]
+    private D_DamageState damageStateData;
+    [SerializeField]
     private D_ChargeState chargeStateData;
     #endregion
-
 
     public override void Start()
     {
@@ -40,6 +42,7 @@ public class Enemy2 : Entity
         playerDetectedState = new E2_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
         stunState = new E2_StunState(this, stateMachine, "stun", stunStateData, this);
         chargeState = new E2_ChargeState(this, stateMachine, "charge", chargeStateData, this);
+        damageState = new E2_DamageState(this, stateMachine, "damage", damageStateData, this);
 
         stateMachine.Initialize(moveState);
     }
@@ -47,15 +50,6 @@ public class Enemy2 : Entity
     public override void Damage(AttackDetails attackDetalis)
     {
         base.Damage(attackDetalis);
-        
-        if (isDead)
-        {
-            stateMachine.ChangeState(deadState);
-        }
-        else if (isStunned && stateMachine.currentState != stunState)
-        {
-            stateMachine.ChangeState(stunState);
-        }
-
+        damageState.Damage(attackDetalis);
     }
 }

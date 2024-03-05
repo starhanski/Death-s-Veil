@@ -24,12 +24,17 @@ public class E1_MeleeAttackState : MeleeAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(isAnimationFinished)
+        if (isAnimationFinished)
         {
-            if(isPlayerInMinAgroRange)
+            if (enemy.isTakeDamage)
+            {
+                stateMachine.ChangeState(enemy.damageState);
+            }
+            else if (isPlayerInMinAgroRange)
             {
                 stateMachine.ChangeState(enemy.playerDetectedState);
             }
+
             else
             {
                 stateMachine.ChangeState(enemy.lookForPlayerState);
@@ -45,7 +50,7 @@ public class E1_MeleeAttackState : MeleeAttackState
     {
         base.TriggerAttack();
     }
-     public override void FinishAttack()
+    public override void FinishAttack()
     {
         base.FinishAttack();
     }

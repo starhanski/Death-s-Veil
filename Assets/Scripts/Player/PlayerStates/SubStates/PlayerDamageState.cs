@@ -29,6 +29,7 @@ public class PlayerDamageState : PlayerState
         if (!isExitingState)
         {
             if (damageDone)
+            {
                 if (isGrounded && player.CurrentVelocity.y < 0.01f)
                 {
                     stateMachine.ChangeState(player.IdleState);
@@ -37,6 +38,8 @@ public class PlayerDamageState : PlayerState
                 {
                     stateMachine.ChangeState(player.InAirState);
                 }
+            }
+
         }
     }
     private void CheckKnockback()

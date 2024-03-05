@@ -29,12 +29,13 @@ public class SkillSection : MonoBehaviour, IPointerClickHandler
     }
     public void HandleSkillSectionClick(SkillSection skillSection)
     {
+
         Debug.Log("U selected: " + skillSection.currentSkill.title);
         skillWindowHandler.SetSkillWindow();
         abilityManager.OnSkillSelected(skillSection.currentSkill);
-
+        Time.timeScale = 1;
     }
 
-    
+
 
 }

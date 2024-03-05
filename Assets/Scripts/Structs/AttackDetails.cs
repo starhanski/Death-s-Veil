@@ -8,4 +8,5 @@ public struct AttackDetails
     public float damageAmount;
     public float stunDamageAmount;
     public float lifeStelPercentage;
+    public float missingHealth;
 }

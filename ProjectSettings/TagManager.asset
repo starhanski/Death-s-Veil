@@ -51,14 +51,14 @@ TagManager:
   - name: Air Platforms
     uniqueID: 2699836129
     locked: 0
+  - name: Colons
+    uniqueID: 1979731517
+    locked: 0
   - name: Platforms
     uniqueID: 668047973
     locked: 0
   - name: Traps
     uniqueID: 2895826447
-    locked: 0
-  - name: Slopes
-    uniqueID: 1979731517
     locked: 0
   - name: Grass
     uniqueID: 1518073583
