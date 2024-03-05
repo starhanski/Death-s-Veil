@@ -60,6 +60,7 @@ public class Enemy1 : Entity
     {
         base.Damage(attackDetalis);
         damageState.Damage(attackDetalis);
+        //123
 
     }
     public override void OnDrawGizmos()
