@@ -244,7 +244,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.43513322, y: -0.8256359}
+  m_Offset: {x: 0.098210335, y: -0.8256359}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -255,7 +255,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7644, y: 1.6612282}
+  m_Size: {x: 3.579321, y: 1.6612282}
   m_EdgeRadius: 0
 --- !u!95 &1112349929267886353
 Animator:
@@ -334,7 +334,9 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 24701d8cf0d983e4185d8b99863d0cb5, type: 2}
   deadStateData: {fileID: 11400000, guid: dd7b893e00d681c4cbe738042e12892d, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 8bd158262eed8f74aa72655f1db45945, type: 2}
+  damageStateData: {fileID: 11400000, guid: 04134f5626a5d0346ac24f93fb6cca5b, type: 2}
   chargeStateData: {fileID: 11400000, guid: 3fd704964a534474abd7ccdc4b2a4b25, type: 2}
+  isTakeDamage: 0
 --- !u!1 &6949061953491287623
 GameObject:
   m_ObjectHideFlags: 0

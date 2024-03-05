@@ -1,20 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
+
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
     public FiniteStateMachine stateMachine;
     public D_Entity entityData;
+
     public int facingDirection { get; private set; }
     public int lastDamageDirection { get; private set; }
+
+    public bool isStunned { get; private set; }
+    public bool isDead { get; private set; }
+    public bool isPlayerOnRightSide{get; private set;}
+
+    
     public Rigidbody2D rb { get; private set; }
     public Animator anim { get; private set; }
     public GameObject aliveGo { get; private set; }
     public AnimationToStatemachine atsm { get; private set; }
     public AttackDetails enemyAttackDetails;
-    public Player player { get; private set; }
+
 
 
     [SerializeField]
@@ -31,27 +36,25 @@ public class Entity : MonoBehaviour
     private Vector2 velocityWorkspace;
     private Vector2 touchDamageBotLeft, touchDamageTopRight;
 
-    private float currentHealth;
-    private float currentStunResistance;
-    private float lastDamageTime;
+
     private float lastTouchDamageTime;
+    private float lastDamageTime;
+
+    public  bool isTakeDamage;
 
 
 
 
-    protected bool isStunned;
-    protected bool isDead;
     public virtual void Start()
     {
-        currentHealth = entityData.maxHealth;
-        currentStunResistance = entityData.stunResistance;
+        SetMaxHealth();
+
         facingDirection = 1;
         aliveGo = transform.Find("Alive").gameObject;
         rb = aliveGo.GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
         stateMachine = new FiniteStateMachine();
         atsm = aliveGo.GetComponent<AnimationToStatemachine>();
-        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public virtual void Update()
@@ -61,6 +64,7 @@ public class Entity : MonoBehaviour
         {
             ResetStunResistance();
         }
+
         CheckTouchDamage();
     }
     public virtual void FixedUpdate()
@@ -68,6 +72,7 @@ public class Entity : MonoBehaviour
         stateMachine.currentState.PhysicsUpdate();
     }
 
+    #region Set Functions
     public virtual void SetVelocity(float velocity)
     {
         velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);
@@ -80,6 +85,26 @@ public class Entity : MonoBehaviour
         velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
         rb.velocity = velocityWorkspace;
     }
+    public virtual void SetVelocityX(float velocity)
+    {
+        velocityWorkspace.Set(velocity, rb.velocity.y);
+        rb.velocity = velocityWorkspace;
+    }
+    public virtual void SetVelocityY(float velocity)
+    {
+        velocityWorkspace.Set(rb.velocity.x, velocity);
+        rb.velocity = velocityWorkspace;
+    }
+    public virtual void SetVelocityZero()
+    {
+       rb.velocity = Vector2.zero;
+    }
+    public virtual void SetMaxHealth(){
+        entityData.currentHealth = entityData.maxHealth;
+    }
+    #endregion
+
+    #region  Check Functions
     private void CheckTouchDamage()
     {
         if (Time.time >= lastTouchDamageTime + entityData.touchDamageCooldown)
@@ -120,56 +145,58 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
     }
+
+    public virtual void CheckPlayerSide(AttackDetails attackDetalis)
+    {
+       if(attackDetalis.position.x >= aliveGo.transform.position.x)
+       {
+        isPlayerOnRightSide = true;
+       }
+       else 
+       {
+        isPlayerOnRightSide = false;
+       }
+    }
+
+    #endregion
+
+    #region  Other Functions
     public virtual void Flip()
     {
         facingDirection *= -1;
         aliveGo.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
-    public virtual void DamageHop(float velocity)
-    {
-        velocityWorkspace.Set(rb.velocity.x, velocity);
-        rb.velocity = velocityWorkspace;
-    }
+
     public virtual void ResetStunResistance()
     {
         isStunned = false;
-        currentStunResistance = entityData.stunResistance;
+        entityData.currentStunResistance = entityData.stunResistance;
     }
     public virtual void Damage(AttackDetails attackDetalis)
     {
-        if (attackDetalis.lifeStelPercentage > 0f)
-        {
-            float lifeStealAmount = attackDetalis.damageAmount * (attackDetalis.lifeStelPercentage / 100f);
-            player.RestoreHealth(lifeStealAmount);
-        }
+        CheckPlayerSide(attackDetalis);
+        isTakeDamage = true;
         lastDamageTime = Time.time;
-        currentHealth -= attackDetalis.damageAmount;
-        currentStunResistance -= attackDetalis.stunDamageAmount;
+        entityData.currentHealth -= attackDetalis.damageAmount;
+        entityData.currentStunResistance -= attackDetalis.stunDamageAmount;
 
-        DamageHop(entityData.damageHopSpeed);
-
-        Instantiate(entityData.hitParticle, aliveGo.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-
-        if (attackDetalis.position.x > aliveGo.transform.position.x)
-        {
-            lastDamageDirection = -1;
-        }
-        else
-        {
-            lastDamageDirection = 1;
-        }
-        if (currentStunResistance <= 0f)
+        if (entityData.currentStunResistance <= 0f)
         {
             isStunned = true;
         }
 
-        if (currentHealth <= 0f)
+        if (entityData.currentHealth <= 0f)
         {
             isDead = true;
         }
 
     }
 
+
+    public virtual void DrawParticles()
+    {
+        Instantiate(entityData.hitParticle, aliveGo.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+    }
     public virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
@@ -191,5 +218,5 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(topLeft, bottomLeft);
 
     }
-
+    #endregion
 }

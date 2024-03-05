@@ -23,6 +23,9 @@ public class PlayerInAirState : PlayerAbilityState
     private bool isJumping;
     private bool isTouchingLedge;
 
+    private bool canPrimaryAttack;
+    private bool canSecondaryAttack;
+
     //other
     private bool coyoteTime;
     private bool wallJumpCoyoteTime;
@@ -44,6 +47,10 @@ public class PlayerInAirState : PlayerAbilityState
         isTouchingWall = player.CheckIfTouchingWall();
         isTouchingWallBack = player.CheckIfTouchingWallBack();
         isTouchingLedge = player.CheckIfTouchingLedge();
+
+
+        canPrimaryAttack = player.PrimaryAttackState.CheckIfCanPrimaryAttack();
+        canSecondaryAttack = player.SecondaryAttackState.CheckIfCanSecondaryAttack();
 
         if (isTouchingWall && !isTouchingLedge)
         {
@@ -85,11 +92,11 @@ public class PlayerInAirState : PlayerAbilityState
         {
             stateMachine.ChangeState(player.DamageState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && player.PrimaryAttackState.CheckIfCanPrimaryAttack())
+        else if (primaryAttackInput && canPrimaryAttack)
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary] && player.SecondaryAttackState.CheckIfCanSecondaryAttack())
+        else if (secondaryAttackInput && canSecondaryAttack)
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
@@ -154,7 +161,6 @@ public class PlayerInAirState : PlayerAbilityState
     }
     private void CheckCoyoteTime()
     {
-
         if (coyoteTime && Time.time > startTime + playerData.coyoteTime)
         {
 

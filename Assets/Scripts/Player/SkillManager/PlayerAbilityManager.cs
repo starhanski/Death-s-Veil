@@ -79,7 +79,7 @@ public class PlayerAbilityManager : MonoBehaviour
 
     private void ApplyOmnivamp()
     {
-       playerData.omnivamp += 10f;
+       playerData.omnivamp += 15f;
     }
 
     private void ApplyPower()

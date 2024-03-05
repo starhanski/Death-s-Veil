@@ -19,10 +19,11 @@ MonoBehaviour:
   maxAgroDistance: 18
   closeRangeActionDistance: 3.09
   groundCheckRadius: 0.3
+  maxHealth: 20
+  currentHealth: 20
   stunResistance: 1
   stunRecoveryTime: 1
-  maxHealth: 10
-  damageHopSpeed: 3
+  currentStunResistance: 1
   touchDamageWidth: 2.18
   touchDamageHeight: 1.04
   touchDamageCooldown: 1.5

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class SkillWindowHandler : MonoBehaviour
@@ -7,7 +8,7 @@ public class SkillWindowHandler : MonoBehaviour
     private bool seeSkillWindow;
     private LevelSystem levelSystem;
     private Animator animationController;
-
+    private IEnumerator coroutine;
 
     [SerializeField]
     private PlayerAbilityStats playerAbilityStats;
@@ -29,9 +30,15 @@ public class SkillWindowHandler : MonoBehaviour
         if (seeSkillWindow)
         {
             animationController.SetBool("show", true);
-
+            coroutine = Pause(1f);
+            StartCoroutine(coroutine);
         }
-        
+    }
+
+    private IEnumerator Pause(float pauseDelay)
+    {
+        yield return new WaitForSeconds(pauseDelay);
+        Time.timeScale = 0f;
     }
 
     public void SetLevelSystem(LevelSystem levelSystem)

@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf56ed446ecaac47bc8cfbefeb58d8a, type: 3}
-  m_Name: E2_ChargeStateData
+  m_Script: {fileID: 11500000, guid: 87bf783f61bf2554ebd3fe51d3be6a1e, type: 3}
+  m_Name: E1_DamageState
   m_EditorClassIdentifier: 
-  chargeSpeed: 6
-  chargeTime: 0.8
+  direction: -1
+  knockback: 1
+  knockbackVelocity: 13
+  knockbackStartTime: 9.137211
+  knockbackDuration: 0.3
+  knockbackAngle: {x: 5, y: 10}

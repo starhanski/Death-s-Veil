@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   maxHealth: 50
-  currentHealth: -2
+  currentHealth: 20
   experience: 0
   level: 1
   moveVelocity: 10
@@ -40,24 +40,24 @@ MonoBehaviour:
   isCanRoll: 0
   rollVelocity: 10
   rollColldown: 0.2
-  primaryAttackDamage: 10
-  secondaryAttackDamage: 20
+  primaryAttackDamage: 5
+  secondaryAttackDamage: 10
   primaryAttackRadius: 1.16
   secondaryAttackRadius: 1.54
   primaryAttackCooldown: 0.4
   secondaryAttackCooldown: 0.8
-  attackVelocity: 10
+  attackVelocity: 5
   attackVelocityAddingTime: 0.1
   secondaryAttackStunDamage: 1
   primaryAttackStunDamage: 0
-  omnivamp: 20
+  omnivamp: 0
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 128
-  direction: -1
-  knockback: 1
+  direction: 1
+  knockback: 0
   knockbackVelocity: 20
-  knockbackStartTime: 89.44213
+  knockbackStartTime: 7.7645464
   knockbackDuration: 0.15
   knockbackAngle: {x: 5, y: 10}
   deathChunkParticle: {fileID: 5028053763810681507, guid: 203c2da96688dd045a0c5269025c91f8, type: 3}
@@ -72,7 +72,7 @@ MonoBehaviour:
   slopeDownAngleOld: 0
   slopeSideAngle: 0
   maxSlopeAngle: 45
-  slopeNormalPerpendicular: {x: -1, y: -0.00000052366966}
+  slopeNormalPerpendicular: {x: -1, y: 0}
   isOnSlope: 0
   noFriction: {fileID: 6200000, guid: 6cc30ed470596234e8c59e842229d2f4, type: 2}
   fullFriction: {fileID: 6200000, guid: daf3bf97c90441b4780fcfbbc75f6bd0, type: 2}

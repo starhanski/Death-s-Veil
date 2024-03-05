@@ -26,7 +26,11 @@ public class E1_StunState : StunState
         base.LogicUpdate();
         if (isStunTimeOver)
         {
-            if (performCloseRangeAction)
+            if (enemy.isTakeDamage)
+            {
+                stateMachine.ChangeState(enemy.damageState);
+            }
+            else if (performCloseRangeAction)
             {
                 stateMachine.ChangeState(enemy.meleeAttackState);
             }
@@ -34,6 +38,7 @@ public class E1_StunState : StunState
             {
                 stateMachine.ChangeState(enemy.chargeState);
             }
+
             else
             {
                 enemy.lookForPlayerState.SetTurnImmediately(true);

@@ -24,14 +24,19 @@ public class E1_LookForPlayerState : LookForPlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(isPlayerIsMinAgroRange)
+        if (enemy.isTakeDamage)
         {
-           stateMachine.ChangeState(enemy.playerDetectedState); 
+            stateMachine.ChangeState(enemy.damageState);
         }
-        else if(isAllTurnsTimeDone)
+        else if (isPlayerIsMinAgroRange)
+        {
+            stateMachine.ChangeState(enemy.playerDetectedState);
+        }
+        else if (isAllTurnsTimeDone)
         {
             stateMachine.ChangeState(enemy.moveState);
         }
+
     }
     public override void PhysicsUpdate()
     {

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Enemy1 : Entity
@@ -13,6 +12,7 @@ public class Enemy1 : Entity
     public E1_StunState stunState { get; private set; }
     public E1_DeadState deadState { get; private set; }
     public E1_SpawnState spawnState { get; private set; }
+    public E1_DamageState damageState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -33,8 +33,9 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_SpawnState spawnStateData;
     [SerializeField]
+    D_DamageState damageStateData;
+    [SerializeField]
     private Transform meleeAttackPosition;
-
 
 
     public override void Start()
@@ -50,20 +51,15 @@ public class Enemy1 : Entity
         stunState = new E1_StunState(this, stateMachine, "stun", stunStateData, this);
         deadState = new E1_DeadState(this, stateMachine, "dead", deadStateData, this);
         spawnState = new E1_SpawnState(this, stateMachine, "spawn", spawnStateData, this);
+        damageState = new E1_DamageState(this, stateMachine, "damage", damageStateData, this);
 
         stateMachine.Initialize(spawnState);
     }
+    
     public override void Damage(AttackDetails attackDetalis)
     {
         base.Damage(attackDetalis);
-        if (isDead)
-        {
-            stateMachine.ChangeState(deadState);
-        }
-        else if (isStunned && stateMachine.currentState != stunState)
-        {
-            stateMachine.ChangeState(stunState);
-        }
+        damageState.Damage(attackDetalis);
 
     }
     public override void OnDrawGizmos()
@@ -72,5 +68,5 @@ public class Enemy1 : Entity
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
 
-    
+
 }
