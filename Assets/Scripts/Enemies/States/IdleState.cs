@@ -9,7 +9,10 @@ public class IdleState : State
     protected bool isIdleTimeOver;
     protected float idleTime;
     protected bool isPlayerIsMinAgroRange;
-    public IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName,D_IdleState stateData) : base(entity, stateMachine, animBoolName)
+    protected bool isPlayerInAgroRadius;
+
+    protected bool isFlipAfterAgro;
+    public IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -17,6 +20,7 @@ public class IdleState : State
     {
         base.DoChecks();
         isPlayerIsMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInAgroRadius = entity.CheckPlayerInAgroRadius();
     }
     public override void Enter()
     {
@@ -28,22 +32,29 @@ public class IdleState : State
     public override void Exit()
     {
         base.Exit();
-        if(flipAfterIdle)
+        if (flipAfterIdle)
         {
             entity.Flip();
         }
+
+        isFlipAfterAgro = false;
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(Time.time >= startTime + idleTime)
+        if (isPlayerInAgroRadius && !isPlayerIsMinAgroRange && !isFlipAfterAgro)
+        {
+            entity.Flip();
+            isFlipAfterAgro = true;
+        }
+        if (Time.time >= startTime + idleTime)
         {
             isIdleTimeOver = true;
         }
     }
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate(); 
+        base.PhysicsUpdate();
     }
     public void SetFlipAfterIdle(bool flip)
     {
@@ -51,6 +62,6 @@ public class IdleState : State
     }
     private void SetRandomIdleTime()
     {
-        idleTime = Random.Range(stateData.minIdleTime,stateData.maxIdleTime);
+        idleTime = Random.Range(stateData.minIdleTime, stateData.maxIdleTime);
     }
 }

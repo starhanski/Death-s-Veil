@@ -13,6 +13,7 @@ public class D_Entity : ScriptableObject
     public float maxAgroDistance = 4f;
     public float closeRangeActionDistance = 2f;
     public float groundCheckRadius = 0.3f;
+    public float agroRadius = 4f;
 
     [Header("Main Stats")]
     public float maxHealth = 30f;

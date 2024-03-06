@@ -25,6 +25,7 @@ public class E1_ChargeState : ChargeState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
         if (performCloseRangeAction)
         {
             stateMachine.ChangeState(enemy.meleeAttackState);
@@ -35,6 +36,7 @@ public class E1_ChargeState : ChargeState
         }
         else if (isChargeTimeOver)
         {
+          
             if (isPlayerInMinAgroRange)
             {
                 stateMachine.ChangeState(enemy.playerDetectedState);

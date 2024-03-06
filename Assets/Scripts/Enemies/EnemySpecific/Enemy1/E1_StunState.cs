@@ -26,6 +26,7 @@ public class E1_StunState : StunState
         base.LogicUpdate();
         if (isStunTimeOver)
         {
+
             if (enemy.isTakeDamage)
             {
                 stateMachine.ChangeState(enemy.damageState);
