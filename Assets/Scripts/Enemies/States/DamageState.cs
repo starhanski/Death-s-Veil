@@ -55,7 +55,6 @@ public class DamageState : State
         {
             isKnockBackOver = true;
             stateData.knockback = false;
-            Debug.Log("knockback over");
             entity.SetVelocityZero();
         }
     }
