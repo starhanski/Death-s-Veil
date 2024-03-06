@@ -39,6 +39,8 @@ public class Entity : MonoBehaviour
     private float lastTouchDamageTime;
     private float lastDamageTime;
 
+    private float currentHealth, maxHealth;
+
     public  bool isTakeDamage;
 
 
@@ -99,7 +101,8 @@ public class Entity : MonoBehaviour
        rb.velocity = Vector2.zero;
     }
     public virtual void SetMaxHealth(){
-        entityData.currentHealth = entityData.maxHealth;
+        maxHealth = entityData.maxHealth;
+        currentHealth = maxHealth;
     }
     #endregion
 
@@ -168,7 +171,7 @@ public class Entity : MonoBehaviour
     {
         isTakeDamage = true;
         lastDamageTime = Time.time;
-        entityData.currentHealth -= attackDetalis.damageAmount;
+        currentHealth -= attackDetalis.damageAmount;
         entityData.currentStunResistance -= attackDetalis.stunDamageAmount;
 
         if (entityData.currentStunResistance <= 0f)
@@ -176,7 +179,7 @@ public class Entity : MonoBehaviour
             isStunned = true;
         }
 
-        if (entityData.currentHealth <= 0f)
+        if (currentHealth <= 0f)
         {
             isDead = true;
         }

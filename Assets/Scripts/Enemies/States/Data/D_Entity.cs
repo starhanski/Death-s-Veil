@@ -18,8 +18,6 @@ public class D_Entity : ScriptableObject
     [Header("Main Stats")]
     public float maxHealth = 30f;
 
-    public float currentHealth;
-
     public float stunResistance = 3f;
     public float stunRecoveryTime = 2f;
 
