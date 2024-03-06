@@ -71,18 +71,10 @@ public class DamageState : State
 
     public virtual void Damage(AttackDetails attackDetalis)
     {
-        
+
         ActivateLifeSteal(attackDetalis);
         entity.DrawParticles();
-        entity.CheckPlayerSide(attackDetalis);
-        if (entity.isPlayerOnRightSide)
-        {
-            stateData.direction = -1;
-        }
-        else
-        {
-            stateData.direction = 1;
-        }
+        stateData.direction = player.FacingDirection;
         Knockback();
     }
 

@@ -9,6 +9,9 @@ public class MoveState : State
     protected bool isDetectingLedge;
     protected bool isPlayerIsMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
+    protected bool isPlayerInAgroRadius;
+
+    protected bool isFlipAfterAgro;
     public MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
@@ -20,6 +23,7 @@ public class MoveState : State
         isDetectingLedge = entity.CheckLedge();
         isPlayerIsMinAgroRange = entity.CheckPlayerInMinAgroRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
+        isPlayerInAgroRadius = entity.CheckPlayerInAgroRadius();
     }
     public override void Enter()
     {
@@ -29,10 +33,16 @@ public class MoveState : State
     public override void Exit()
     {
         base.Exit();
+        isFlipAfterAgro = false;
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (isPlayerInAgroRadius && !isPlayerIsMinAgroRange && !isFlipAfterAgro)
+        {
+            entity.Flip();
+            isFlipAfterAgro = true;
+        }
     }
     public override void PhysicsUpdate()
     {

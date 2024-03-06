@@ -67,7 +67,12 @@ public class PlayerDamageState : PlayerState
         if (!player.RollState.CheckRollStatus())
         {
             DecreaseHealth(attackDetails.damageAmount);
-            if (attackDetails.position.x < player.transform.position.x)
+            if (attackDetails.upDirection)
+            {
+                playerData.direction = 0;
+
+            }
+            else if (attackDetails.position.x < player.transform.position.x)
             {
                 playerData.direction = 1;
             }
