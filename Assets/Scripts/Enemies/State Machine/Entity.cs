@@ -11,7 +11,6 @@ public class Entity : MonoBehaviour
 
     public bool isStunned { get; private set; }
     public bool isDead { get; private set; }
-    public bool isPlayerOnRightSide{get; private set;}
 
     
     public Rigidbody2D rb { get; private set; }
@@ -129,6 +128,9 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
+    public virtual bool CheckPlayerInAgroRadius(){
+        return Physics2D.OverlapCircle(playerCheck.position,entityData.agroRadius,entityData.whatIsPlayer);
+    }
     public virtual bool CheckPlayerInCloseRangeAction()
     {
         return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
@@ -146,17 +148,7 @@ public class Entity : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
     }
 
-    public virtual void CheckPlayerSide(AttackDetails attackDetalis)
-    {
-       if(attackDetalis.position.x >= aliveGo.transform.position.x)
-       {
-        isPlayerOnRightSide = true;
-       }
-       else 
-       {
-        isPlayerOnRightSide = false;
-       }
-    }
+
 
     #endregion
 
@@ -174,7 +166,6 @@ public class Entity : MonoBehaviour
     }
     public virtual void Damage(AttackDetails attackDetalis)
     {
-        CheckPlayerSide(attackDetalis);
         isTakeDamage = true;
         lastDamageTime = Time.time;
         entityData.currentHealth -= attackDetalis.damageAmount;
@@ -204,6 +195,7 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position,entityData.agroRadius);
 
 
 

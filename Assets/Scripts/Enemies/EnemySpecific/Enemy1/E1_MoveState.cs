@@ -23,6 +23,7 @@ public class E1_MoveState : MoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
         if (enemy.isTakeDamage)
         {
             stateMachine.ChangeState(enemy.damageState);
