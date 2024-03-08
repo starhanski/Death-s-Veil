@@ -17,7 +17,7 @@ public class SpawnState : State
     }
     public override void Enter()
     {
-        entity.atsm.spawnState = this;
+        entity.Atsm.spawnState = this;
         isAnimationFinished = false;
         base.Enter();
     }

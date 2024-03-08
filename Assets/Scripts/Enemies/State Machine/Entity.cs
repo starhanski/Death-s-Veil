@@ -6,17 +6,17 @@ public class Entity : MonoBehaviour
     public FiniteStateMachine stateMachine;
     public D_Entity entityData;
 
-    public int facingDirection { get; private set; }
-    public int lastDamageDirection { get; private set; }
+    public int FacingDirection { get; private set; }
+    public int LastDamageDirection { get; private set; }
 
-    public bool isStunned { get; private set; }
-    public bool isDead { get; private set; }
+    public bool IsStunned { get; private set; }
+    public bool IsDead { get; private set; }
 
     
-    public Rigidbody2D rb { get; private set; }
-    public Animator anim { get; private set; }
-    public GameObject aliveGo { get; private set; }
-    public AnimationToStatemachine atsm { get; private set; }
+    public Rigidbody2D RB { get; private set; }
+    public Animator Anim { get; private set; }
+    public GameObject AliveGo { get; private set; }
+    public AnimationToStatemachine Atsm { get; private set; }
     public AttackDetails enemyAttackDetails;
 
 
@@ -50,12 +50,12 @@ public class Entity : MonoBehaviour
     {
         SetMaxHealth();
 
-        facingDirection = 1;
-        aliveGo = transform.Find("Alive").gameObject;
-        rb = aliveGo.GetComponent<Rigidbody2D>();
-        anim = aliveGo.GetComponent<Animator>();
+        FacingDirection = 1;
+        AliveGo = transform.Find("Alive").gameObject;
+        RB = AliveGo.GetComponent<Rigidbody2D>();
+        Anim = AliveGo.GetComponent<Animator>();
         stateMachine = new FiniteStateMachine();
-        atsm = aliveGo.GetComponent<AnimationToStatemachine>();
+        Atsm = AliveGo.GetComponent<AnimationToStatemachine>();
     }
 
     public virtual void Update()
@@ -76,29 +76,29 @@ public class Entity : MonoBehaviour
     #region Set Functions
     public virtual void SetVelocity(float velocity)
     {
-        velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);
-        rb.velocity = velocityWorkspace;
+        velocityWorkspace.Set(FacingDirection * velocity, RB.velocity.y);
+        RB.velocity = velocityWorkspace;
 
     }
     public virtual void SetVelocity(float velocity, Vector2 angle, int direction)
     {
         angle.Normalize();
         velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
-        rb.velocity = velocityWorkspace;
+        RB.velocity = velocityWorkspace;
     }
     public virtual void SetVelocityX(float velocity)
     {
-        velocityWorkspace.Set(velocity, rb.velocity.y);
-        rb.velocity = velocityWorkspace;
+        velocityWorkspace.Set(velocity, RB.velocity.y);
+        RB.velocity = velocityWorkspace;
     }
     public virtual void SetVelocityY(float velocity)
     {
-        velocityWorkspace.Set(rb.velocity.x, velocity);
-        rb.velocity = velocityWorkspace;
+        velocityWorkspace.Set(RB.velocity.x, velocity);
+        RB.velocity = velocityWorkspace;
     }
     public virtual void SetVelocityZero()
     {
-       rb.velocity = Vector2.zero;
+       RB.velocity = Vector2.zero;
     }
     public virtual void SetMaxHealth(){
         maxHealth = entityData.maxHealth;
@@ -107,7 +107,7 @@ public class Entity : MonoBehaviour
     #endregion
 
     #region  Check Functions
-    private void CheckTouchDamage()
+    public virtual void CheckTouchDamage()
     {
         if (Time.time >= lastTouchDamageTime + entityData.touchDamageCooldown)
         {
@@ -118,29 +118,29 @@ public class Entity : MonoBehaviour
             {
                 lastTouchDamageTime = Time.time;
                 enemyAttackDetails.damageAmount = entityData.touchDamage;
-                enemyAttackDetails.position = aliveGo.transform.position;
+                enemyAttackDetails.position = AliveGo.transform.position;
                 hit.SendMessage("Damage", enemyAttackDetails);
             }
         }
     }
     public virtual bool CheckPlayerInMinAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, AliveGo.transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
     }
     public virtual bool CheckPlayerInMaxAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, AliveGo.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
     public virtual bool CheckPlayerInAgroRadius(){
         return Physics2D.OverlapCircle(playerCheck.position,entityData.agroRadius,entityData.whatIsPlayer);
     }
     public virtual bool CheckPlayerInCloseRangeAction()
     {
-        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, AliveGo.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
     }
     public virtual bool CheckWall()
     {
-        return Physics2D.Raycast(wallCheck.position, aliveGo.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
+        return Physics2D.Raycast(wallCheck.position, AliveGo.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
     }
     public virtual bool CheckLedge()
     {
@@ -158,13 +158,13 @@ public class Entity : MonoBehaviour
     #region  Other Functions
     public virtual void Flip()
     {
-        facingDirection *= -1;
-        aliveGo.transform.Rotate(0.0f, 180.0f, 0.0f);
+        FacingDirection *= -1;
+        AliveGo.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
     public virtual void ResetStunResistance()
     {
-        isStunned = false;
+        IsStunned = false;
         entityData.currentStunResistance = entityData.stunResistance;
     }
     public virtual void Damage(AttackDetails attackDetalis)
@@ -176,12 +176,12 @@ public class Entity : MonoBehaviour
 
         if (entityData.currentStunResistance <= 0f)
         {
-            isStunned = true;
+            IsStunned = true;
         }
 
         if (currentHealth <= 0f)
         {
-            isDead = true;
+            IsDead = true;
         }
 
     }
@@ -189,11 +189,11 @@ public class Entity : MonoBehaviour
 
     public virtual void DrawParticles()
     {
-        Instantiate(entityData.hitParticle, aliveGo.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+        Instantiate(entityData.hitParticle, AliveGo.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
     }
     public virtual void OnDrawGizmos()
     {
-        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
+        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * FacingDirection * entityData.wallCheckDistance));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);

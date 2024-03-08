@@ -21,7 +21,7 @@ public class AttackState : State
     public override void Enter()
     {
         base.Enter();
-        entity.atsm.attackState = this;
+        entity.Atsm.attackState = this;
         isAnimationFinished = false;
         entity.SetVelocity(0f);
     }
