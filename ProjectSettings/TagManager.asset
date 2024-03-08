@@ -16,7 +16,7 @@ TagManager:
   - Damagable
   - Dead
   - Player
-  - 
+  - Traps
   - 
   - 
   - 
@@ -41,9 +41,6 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Walls
-    uniqueID: 2281940057
     locked: 0
   - name: Decorations
     uniqueID: 811698989

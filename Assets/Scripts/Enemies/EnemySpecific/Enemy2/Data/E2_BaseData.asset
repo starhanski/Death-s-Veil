@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: E2_BaseData
   m_EditorClassIdentifier: 
   experienceAmount: 20
-  wallCheckDistance: 0.1
+  wallCheckDistance: 0.4
   ledgeCheckDistance: 0.4
   minAgroDistance: 17
   maxAgroDistance: 18
   closeRangeActionDistance: 3.09
   groundCheckRadius: 0.3
+  agroRadius: 4
   maxHealth: 20
-  currentHealth: 20
   stunResistance: 1
   stunRecoveryTime: 1
   currentStunResistance: 1

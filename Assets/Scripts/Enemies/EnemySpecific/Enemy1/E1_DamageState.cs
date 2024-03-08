@@ -23,11 +23,11 @@ public class E1_DamageState : DamageState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (entity.isDead)
+        if (entity.IsDead)
         {
             stateMachine.ChangeState(enemy.deadState);
         }
-        else if (entity.isStunned && stateMachine.currentState != enemy.stunState)
+        else if (entity.IsStunned && stateMachine.currentState != enemy.stunState)
         {
             stateMachine.ChangeState(enemy.stunState);
         }

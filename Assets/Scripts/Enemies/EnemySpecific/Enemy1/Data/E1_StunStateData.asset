@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunTime: 2
   stunKnockbackTime: 0.3
-  stunKnockbackSpeed: 8
-  stunKnockbackAngle: {x: 1, y: 2}
+  stunKnockbackSpeed: 15
+  stunKnockbackAngle: {x: 5, y: 10}

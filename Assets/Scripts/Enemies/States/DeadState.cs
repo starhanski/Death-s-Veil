@@ -18,8 +18,8 @@ public class DeadState : State
     {
         base.Enter();
         player = GameObject.Find("Player").GetComponent<Player>();
-        GameObject.Instantiate(stateData.deathBloodParticle,entity.aliveGo.transform.position,stateData.deathBloodParticle.transform.rotation);
-        GameObject.Instantiate(stateData.deathChunkParticle,entity.aliveGo.transform.position,stateData.deathChunkParticle.transform.rotation);
+        GameObject.Instantiate(stateData.deathBloodParticle,entity.AliveGo.transform.position,stateData.deathBloodParticle.transform.rotation);
+        GameObject.Instantiate(stateData.deathChunkParticle,entity.AliveGo.transform.position,stateData.deathChunkParticle.transform.rotation);
         entity.gameObject.SetActive(false);
        
         player.SendMessage("GetExperiencePoints",entity.entityData.experienceAmount);
