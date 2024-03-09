@@ -23,7 +23,7 @@ public class MoveState : State
         isDetectingLedge = entity.CheckLedge();
         isPlayerIsMinAgroRange = entity.CheckPlayerInMinAgroRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
-        isPlayerInAgroRadius = entity.CheckPlayerInAgroRadius();
+        isPlayerInAgroRadius = entity.CheckPlayerInBackAgro();
     }
     public override void Enter()
     {

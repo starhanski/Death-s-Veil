@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c9924243d38b246b6cb45310e75e1c, type: 3}
   m_Name: E1_BaseData
   m_EditorClassIdentifier: 
-  experienceAmount: 50
+  experienceAmount: 0
   wallCheckDistance: 0.83
-  ledgeCheckDistance: 1
+  ledgeCheckDistance: 0.68
   minAgroDistance: 17
   maxAgroDistance: 18
   closeRangeActionDistance: 1
   groundCheckRadius: 0.3
+  backAgroDistance: 6.33
   maxHealth: 20
-  currentHealth: 0
   stunResistance: 1
   stunRecoveryTime: 2
   currentStunResistance: 1

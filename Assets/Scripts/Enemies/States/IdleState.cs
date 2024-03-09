@@ -20,7 +20,7 @@ public class IdleState : State
     {
         base.DoChecks();
         isPlayerIsMinAgroRange = entity.CheckPlayerInMinAgroRange();
-        isPlayerInAgroRadius = entity.CheckPlayerInAgroRadius();
+        isPlayerInAgroRadius = entity.CheckPlayerInBackAgro();
     }
     public override void Enter()
     {

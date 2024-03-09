@@ -15,6 +15,6 @@ MonoBehaviour:
   direction: 1
   knockback: 1
   knockbackVelocity: 13
-  knockbackStartTime: 18.909664
+  knockbackStartTime: 38.79271
   knockbackDuration: 0.3
   knockbackAngle: {x: 5, y: 10}
