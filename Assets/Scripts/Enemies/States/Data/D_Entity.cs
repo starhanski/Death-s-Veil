@@ -21,8 +21,6 @@ public class D_Entity : ScriptableObject
     public float stunResistance = 3f;
     public float stunRecoveryTime = 2f;
 
-    public float currentStunResistance;
-
     [Header("Touch damage")]
     public float touchDamageWidth, touchDamageHeight;
     public float touchDamageCooldown = 1f;
