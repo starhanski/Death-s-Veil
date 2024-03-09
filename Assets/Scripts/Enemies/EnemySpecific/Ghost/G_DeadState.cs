@@ -25,6 +25,7 @@ public class G_DeadState : DeadState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
     }
     public override void PhysicsUpdate()
     {

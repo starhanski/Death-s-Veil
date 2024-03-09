@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb8fa3fc52565442930378af7627366, type: 3}
   m_Name: G_DeadStateData
   m_EditorClassIdentifier: 
-  deathChunkParticle: {fileID: 0}
-  deathBloodParticle: {fileID: 0}
+  deathChunkParticle: {fileID: 5028053763810681507, guid: 203c2da96688dd045a0c5269025c91f8, type: 3}
+  deathBloodParticle: {fileID: 1075864004316583484, guid: 482c8ce598979834f91aeea46cd1e8b3, type: 3}

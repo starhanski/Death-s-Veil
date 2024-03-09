@@ -19,7 +19,7 @@ MonoBehaviour:
   maxAgroDistance: 18
   closeRangeActionDistance: 3.09
   groundCheckRadius: 0.3
-  agroRadius: 4
+  backAgroDistance: 6
   maxHealth: 20
   stunResistance: 1
   stunRecoveryTime: 1

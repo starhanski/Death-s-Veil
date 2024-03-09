@@ -131,8 +131,8 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.Raycast(playerCheck.position, AliveGo.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
-    public virtual bool CheckPlayerInAgroRadius(){
-        return Physics2D.OverlapCircle(playerCheck.position,entityData.agroRadius,entityData.whatIsPlayer);
+    public virtual bool CheckPlayerInBackAgro(){
+        return Physics2D.Raycast(playerCheck.position,-AliveGo.transform.right,entityData.backAgroDistance,entityData.whatIsPlayer);
     }
     public virtual bool CheckPlayerInCloseRangeAction()
     {
@@ -172,6 +172,7 @@ public class Entity : MonoBehaviour
         isTakeDamage = true;
         lastDamageTime = Time.time;
         currentHealth -= attackDetalis.damageAmount;
+        Debug.Log("Ghost Health decreased" + currentHealth);
         entityData.currentStunResistance -= attackDetalis.stunDamageAmount;
 
         if (entityData.currentStunResistance <= 0f)
@@ -198,7 +199,7 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
-        Gizmos.DrawWireSphere(playerCheck.position,entityData.agroRadius);
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(-Vector2.right * entityData.backAgroDistance), 0.2f);
 
 
 

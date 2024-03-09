@@ -172,7 +172,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1112768713
-  m_SortingLayer: 8
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a9d1b1763e4e44edc8ae416cba5b8521, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -329,6 +329,7 @@ MonoBehaviour:
   playerCheck: {fileID: 1738774828250891292}
   groundCheck: {fileID: 890610442896115977}
   touchDamageCheck: {fileID: 4307617919977873329}
+  isTakeDamage: 0
   moveStateData: {fileID: 11400000, guid: 40e828b90e618d143aff5b439463015c, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 48c2eed339638694b879bfb65c0f8b60, type: 2}
   stunStateData: {fileID: 11400000, guid: 24701d8cf0d983e4185d8b99863d0cb5, type: 2}
@@ -336,7 +337,6 @@ MonoBehaviour:
   playerDetectedStateData: {fileID: 11400000, guid: 8bd158262eed8f74aa72655f1db45945, type: 2}
   damageStateData: {fileID: 11400000, guid: 04134f5626a5d0346ac24f93fb6cca5b, type: 2}
   chargeStateData: {fileID: 11400000, guid: 3fd704964a534474abd7ccdc4b2a4b25, type: 2}
-  isTakeDamage: 0
 --- !u!1 &6949061953491287623
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 6949061953491287623}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.95, y: -1.65, z: 0}
+  m_LocalPosition: {x: 1.95, y: -1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

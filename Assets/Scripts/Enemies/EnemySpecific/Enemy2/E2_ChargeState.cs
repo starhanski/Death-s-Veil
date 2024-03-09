@@ -25,7 +25,7 @@ public class E2_ChargeState : ChargeState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
+       
         if (!isDetectingLedge || isDetectingWall)
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);

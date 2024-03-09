@@ -22,6 +22,7 @@ public class E2_MoveState : MoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+       
         if (isDetectingWall || !isDetectingLedge)
         {
             entity.SetVelocity(0f);

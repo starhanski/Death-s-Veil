@@ -13,6 +13,7 @@ public class G_DamageState : DamageState
     public override void Damage(AttackDetails attackDetalis)
     {
         base.Damage(attackDetalis);
+        stateMachine.ChangeState(enemy.damageState);
     }
     public override void DoChecks()
     {
@@ -25,10 +26,19 @@ public class G_DamageState : DamageState
     public override void Exit()
     {
         base.Exit();
+          entity.isTakeDamage = false;
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (entity.IsDead)
+        {
+            stateMachine.ChangeState(enemy.deadState);
+        }
+        else if (isKnockBackOver)
+        {
+            stateMachine.ChangeState(enemy.seekState);
+        }
     }
     public override void PhysicsUpdate()
     {
