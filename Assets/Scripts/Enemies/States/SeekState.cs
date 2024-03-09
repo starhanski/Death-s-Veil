@@ -10,14 +10,12 @@ public class SeekState : State
 
     [SerializeField] private GameObject aliveGO;
     [SerializeField] private Transform ghostTransform;
-    [SerializeField] private float speed = 400f;
-    [SerializeField] private float nextWaypointDistance = 3f;
+    
 
 
     private Transform target;
     private Path path;
     private int currentWaypoint = 0;
-    private bool reachedEndOfPath = false;
 
     private Seeker seeker;
     private Rigidbody2D rb;
@@ -77,22 +75,17 @@ public class SeekState : State
     {
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
+            return; 
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+        Vector2 force = direction * stateData.speed * Time.deltaTime;
 
         rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-        if (distance < nextWaypointDistance)
+        if (distance < stateData.nextWaypointDistance)
         {
             currentWaypoint++;
         }

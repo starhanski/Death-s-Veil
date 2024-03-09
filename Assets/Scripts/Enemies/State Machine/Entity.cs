@@ -40,6 +40,7 @@ public class Entity : MonoBehaviour
     private float lastDamageTime;
 
     private float currentHealth, maxHealth;
+    private float currentStunResistance;
 
     public  bool isTakeDamage;
 
@@ -165,7 +166,7 @@ public class Entity : MonoBehaviour
     public virtual void ResetStunResistance()
     {
         IsStunned = false;
-        entityData.currentStunResistance = entityData.stunResistance;
+        currentStunResistance = entityData.stunResistance;
     }
     public virtual void Damage(AttackDetails attackDetalis)
     {
@@ -173,9 +174,9 @@ public class Entity : MonoBehaviour
         lastDamageTime = Time.time;
         currentHealth -= attackDetalis.damageAmount;
         Debug.Log("Ghost Health decreased" + currentHealth);
-        entityData.currentStunResistance -= attackDetalis.stunDamageAmount;
+        currentStunResistance -= attackDetalis.stunDamageAmount;
 
-        if (entityData.currentStunResistance <= 0f)
+        if (currentStunResistance <= 0f)
         {
             IsStunned = true;
         }

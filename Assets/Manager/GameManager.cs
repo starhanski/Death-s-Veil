@@ -1,43 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    private int numberOfSpawns = 4;
-    [SerializeField]
-    private Transform spawnPoint;
+    [System.Serializable]
+    public class SpawnPointData
+    {
+        public Transform spawnPoint;
+        public float lastSpawnTime = float.NegativeInfinity;
+        public float spawnTime = 10f;
+    }
 
-    public GameObject gato;
+    [System.Serializable]
+    public class EnemyPrefabData
+    {
+        public GameObject enemyPrefab;
+        public float spawnChance = 1f;
+    }
 
-    [SerializeField]
-    private float spawnTime = 10f;
-    private float lastSpawnTime = float.NegativeInfinity;
+    [SerializeField] private List<SpawnPointData> spawnPoints = new List<SpawnPointData>();
+    [SerializeField] private List<EnemyPrefabData> enemyPrefabs = new List<EnemyPrefabData>();
+
+    [SerializeField] private int totalSpawns = 80;
+    private int spawnsRemaining;
 
     private void Start()
     {
-
+        spawnsRemaining = totalSpawns;
     }
+
     private void Update()
     {
         CheckRespawn();
     }
+
     private void CheckRespawn()
     {
-        if (numberOfSpawns > 0)
+        foreach (var spawnPointData in spawnPoints)
         {
-            if (Time.time >= lastSpawnTime + spawnTime)
+            if (spawnsRemaining > 0 && Time.time >= spawnPointData.lastSpawnTime + spawnPointData.spawnTime)
             {
-                SpawnEnemy();
-                lastSpawnTime = Time.time;
-                numberOfSpawns--;
+                if (!IsPointInView(spawnPointData.spawnPoint.position))
+                {
+                    SpawnEnemy(spawnPointData);
+                    spawnPointData.lastSpawnTime = Time.time;
+                    spawnsRemaining--;
+                }
             }
         }
-
     }
-    public void SpawnEnemy()
+
+    private bool IsPointInView(Vector3 point)
     {
-        Instantiate(gato, spawnPoint);
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(point);
+        return viewportPosition.x >= 0 && viewportPosition.x <= 1 && viewportPosition.y >= 0 && viewportPosition.y <= 1;
+    }
+
+    private void SpawnEnemy(SpawnPointData spawnPointData)
+    {
+        float totalSpawnChance = 0f;
+        foreach (var enemyPrefabData in enemyPrefabs)
+        {
+            totalSpawnChance += enemyPrefabData.spawnChance;
+        }
+
+        float randomValue = Random.Range(0f, totalSpawnChance);
+        float cumulativeChance = 0f;
+
+        foreach (var enemyPrefabData in enemyPrefabs)
+        {
+            cumulativeChance += enemyPrefabData.spawnChance;
+            if (randomValue <= cumulativeChance)
+            {
+                Instantiate(enemyPrefabData.enemyPrefab, spawnPointData.spawnPoint.position, Quaternion.identity);
+                break;
+            }
+        }
     }
 }
